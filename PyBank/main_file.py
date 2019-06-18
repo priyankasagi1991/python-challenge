@@ -10,8 +10,8 @@ Minimum_monthly_profit = 0
 total = 0
 month_count = 0
 previous_profit = 0
-total_monthly_change =0
 
+monthly_profit_change_list =[]
 
 
 
@@ -27,13 +27,14 @@ with open(budget_data, newline="") as csvfile:
         month_count = month_count +1
         
         
-      
+        
         
         monthly_profit_change = float(row[1]) - previous_profit
+        monthly_profit_change_list.append(monthly_profit_change)
         
         
         previous_profit = float(row[1])
-        total_monthly_change = total_monthly_change +monthly_profit_change
+       
        
         if monthly_profit_change > Maximum_monthly_profit:
             Maximum_monthly_profit = monthly_profit_change
@@ -43,11 +44,16 @@ with open(budget_data, newline="") as csvfile:
             Minimum_monthly_profit = monthly_profit_change
             lowest_month = row[0]
 
+def average(monthly_profit_change_list):
+    x= len(monthly_profit_change_list)
+    tot= sum(monthly_profit_change_list) -monthly_profit_change_list[0]
+    avg=tot / (x-1)   
+    return avg
 
 total = round(total)
 Maximum_monthly_profit = round(Maximum_monthly_profit)
 Minimum_monthly_profit = round(Minimum_monthly_profit)
-avg_change = round(total_monthly_change/month_count)
+avg_change = round(average(monthly_profit_change_list),2)
 
 pybank_data_output = (
  
@@ -65,5 +71,7 @@ print(pybank_data_output)
 
 pybank_output = os.path.join("downloads","PyBank_Financial_Output.txt")
 with open(pybank_output, 'w') as txtfile:
-      txtwriter = txtfile.write(pybank_data_output)
+      txtwriter = txtfile.write(pybank_data_output)    
+        
+      
       
