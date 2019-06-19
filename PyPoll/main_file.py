@@ -37,7 +37,7 @@ max_index = 0
 
 for x in range(len(individual_candidate)):
     
-    vote_percent = round(candidate_vote_count[x]/total_votes*100)
+    vote_percent = round(candidate_vote_count[x]/total_votes*100,4)
     percent.append(vote_percent)
     
     if candidate_vote_count[x] > max_votes:
