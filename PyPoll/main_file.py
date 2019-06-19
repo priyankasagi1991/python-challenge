@@ -2,7 +2,7 @@ import os
 import csv
 
 
-budget_data_csv = os.path.join("downloads","PyPoll_data.csv")
+Pypoll_csv = os.path.join("downloads","PyPoll_data.csv")
 
 
 total_votes = 0
@@ -10,7 +10,7 @@ individual_candidate = []
 candidate_vote_count = []
 
 
-with open(budget_data_csv, newline="") as csvfile:
+with open(Pypoll_csv, newline="") as csvfile:
     csvreader = csv.reader(csvfile, delimiter=",")
     csv_header = next(csvreader)
 
